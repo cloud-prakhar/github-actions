@@ -43,4 +43,6 @@ jobs:
                python-version: 3.14
 
             - name: Verify python version
-              run: python --version
+              run: |
+                python --version
+                echo "Repository: ${{ vars.REPOSITORY }}"
