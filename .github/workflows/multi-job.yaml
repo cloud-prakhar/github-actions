@@ -46,3 +46,4 @@ jobs:
               run: |
                 python --version
                 echo "Repository: ${{ vars.REPOSITORY }}"
+                echo "SECRET: ${{ secrets.MY_SECRET }}"
