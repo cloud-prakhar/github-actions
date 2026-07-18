@@ -12,13 +12,10 @@ on:
                     - test
                     - prod
 
-env:
-    ENVIRONMENT: ${{ github.event.inputs.environment }}
-
 jobs: 
 
     multi-env-deploy:
-        name: Deploy to ${{ env.ENVIRONMENT }} environment
+        name: Deploy to ${{ inputs.environment }} environment
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
