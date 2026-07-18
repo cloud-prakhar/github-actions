@@ -1,0 +1,46 @@
+name: Mutli-Environment Workflow
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: 'Select the environment to deploy to'
+                required: true
+                type: choice
+                options:
+                    - dev
+                    - test
+                    - prod
+
+env:
+    ENVIRONMENT: ${{ github.event.inputs.environment }}
+
+jobs: 
+
+    multi-env-deploy:
+        name: Deploy to ${{ env.ENVIRONMENT }} environment
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v7
+
+            - name: Env Context Information
+              run: |
+                echo "============================================"
+                echo "  SELECTED ENVIRONMENT: ${{ inputs.environment }}"
+                echo "============================================"
+
+            - name: If DEV, print DEV specific info
+              if: ${{ inputs.environment == 'dev' }}
+              run: |
+                echo "This is the DEV environment. My variable is ${{ vars.var }}."
+
+            - name: If UAT, print UAT specific info
+              if: ${{ inputs.environment == 'uat' }}
+              run: |
+                echo "This is the UAT environment. My variable is ${{ vars.var }}."
+
+            - name: If PROD, print PROD specific info
+              if: ${{ inputs.environment == 'prod' }}
+              run: |
+                echo "This is the PROD environment. My variable is ${{ vars.var }}."             
