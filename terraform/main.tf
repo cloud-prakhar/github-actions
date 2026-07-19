@@ -5,6 +5,12 @@ resource "terraform_data" "example" {
   }
 }
 
+resource "terraform_data" "this" {
+  input = {
+    message = "This root module stores its state in the terraform enterprise."
+  }
+}
+
 output "example_message" {
   value = terraform_data.example.output.message
 }
