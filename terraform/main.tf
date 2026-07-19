@@ -8,3 +8,7 @@ resource "terraform_data" "example" {
 output "example_message" {
   value = terraform_data.example.output.message
 }
+
+output "example_message_2" {
+  value = terraform_data.example.output.message
+}
